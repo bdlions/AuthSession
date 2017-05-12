@@ -30,7 +30,7 @@ public class Main {
             ISession session = sessionManager.createSession(user);
             
             session = sessionManager.getSessionBySessionId(session.getSessionId());
-            Subject currentUser = session.getUser();
+            Subject currentUser = (Subject)session.getUser();
             
             
             if (currentUser.hasRole(USER_ROLE.ADMIN.name())) {

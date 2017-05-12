@@ -9,6 +9,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import org.apache.shiro.session.ProxiedSession;
 import org.apache.shiro.subject.Subject;
+import org.bdlions.transport.sender.IClientPacketSender;
 
 /**
  *
@@ -135,6 +136,11 @@ public class UserSessionImpl extends ProxiedSession implements ISession {
     @Override
     public void setLiveStatus(int liveStatus) {
         setAttribute(LIVE_STATUS, liveStatus);
+    }
+
+    @Override
+    public IClientPacketSender getClientChannel() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
