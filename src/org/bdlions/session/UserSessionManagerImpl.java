@@ -15,6 +15,7 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.UnknownSessionException;
 import org.apache.shiro.subject.Subject;
 import org.bdlions.session.db.IDBUserProvider;
 
@@ -36,11 +37,17 @@ public class UserSessionManagerImpl implements ISessionManager {
 
     @Override
     public ISession getSessionBySessionId(String sessionId) {
-        Subject subject = new Subject.Builder().sessionId(sessionId).buildSubject();
-        if (subject.getSession(false) == null) {
-            return null;
+        UserSessionImpl session = null;
+        
+        try{
+            Subject subject = new Subject.Builder().sessionId(sessionId).buildSubject();
+            if (subject.getSession(false) == null) {
+                return null;
+            }
+            session = new UserSessionImpl(subject);
+        }catch(UnknownSessionException ex){
+            
         }
-        UserSessionImpl session = new UserSessionImpl(subject);
         return session;
     }
 
