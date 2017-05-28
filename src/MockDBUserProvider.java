@@ -61,6 +61,11 @@ public class MockDBUserProvider implements IDBUserProvider{
     public Collection<String> getUserPermissions(String userName) {
         return getPermissionsByRole(getUserRoles(userName));
     }
+
+    @Override
+    public Credential getLoggedInUserByUserName(String userName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
 }

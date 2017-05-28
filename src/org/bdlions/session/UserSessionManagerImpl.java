@@ -28,8 +28,10 @@ public class UserSessionManagerImpl implements ISessionManager {
     private final SecurityManager securityManager;
     private final HashMap<String, HashMap<Integer, String>> deviceUserSessions;
     private final int SESSION_IDLE_TIMEOUT = 1000 * 300;
+    private final IDBUserProvider userProvider;
 
     public UserSessionManagerImpl(IDBUserProvider userProvider) {
+        this.userProvider = userProvider;
         securityManager = new DefaultSecurityManager(new UserRealm(userProvider));
         SecurityUtils.setSecurityManager(securityManager);
         deviceUserSessions = new HashMap<>();
@@ -64,17 +66,20 @@ public class UserSessionManagerImpl implements ISessionManager {
         }
 
         Subject currentUser = new Subject.Builder().buildSubject();
-
-        UserSessionImpl session = new UserSessionImpl(currentUser);
         
         if (currentUser.isAuthenticated()) {
-            return session;
+            return getSessionBySessionId((String)currentUser.getSession().getId());
         }
         else{
             UsernamePasswordToken token = new UsernamePasswordToken(credential.getUserName(), credential.getPassword());
             token.setRememberMe(true);
             currentUser.login(token);
+            
         }
+        
+        UserSessionImpl session = new UserSessionImpl(currentUser);
+        
+        credential = userProvider.getLoggedInUserByUserName(credential.getUserName());
         
         session.setAppType(credential.getAppType());
         session.setDevice(credential.getDevice());

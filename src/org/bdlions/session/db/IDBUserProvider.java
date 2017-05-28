@@ -14,6 +14,7 @@ import java.util.Set;
  * @author alamgir
  */
 public interface IDBUserProvider {
+    Credential getLoggedInUserByUserName(String userName);
     Credential getUser(Credential credential);
     Set<String> getUserRoles(String userName);
     Collection<String> getPermissionsByRole(Set<String> roles);
