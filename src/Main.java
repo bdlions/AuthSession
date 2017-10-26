@@ -5,8 +5,8 @@
  */
 
 
-import com.auction.dto.Credential;
-import com.auction.util.ACTION;
+import com.bdlions.dto.Credential;
+import com.bdlions.util.ACTION;
 import org.apache.shiro.subject.Subject;
 import org.bdlions.roles.USER_ROLE;
 import org.bdlions.session.ISession;

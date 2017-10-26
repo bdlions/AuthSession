@@ -5,7 +5,7 @@
  */
 package org.bdlions.session;
 
-import com.auction.dto.Credential;
+import com.bdlions.dto.Credential;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.HashMap;

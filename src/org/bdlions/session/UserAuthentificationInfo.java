@@ -5,7 +5,7 @@
  */
 package org.bdlions.session;
 
-import com.auction.dto.Credential;
+import com.bdlions.dto.Credential;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;

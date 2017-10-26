@@ -5,7 +5,7 @@
  */
 package org.bdlions.session.db;
 
-import com.auction.dto.Credential;
+import com.bdlions.dto.Credential;
 import java.util.Collection;
 import java.util.Set;
 
